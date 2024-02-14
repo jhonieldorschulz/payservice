@@ -1,5 +1,6 @@
 package br.com.huppers.payservice.domain.user;
 
+import br.com.huppers.payservice.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -13,7 +14,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @AllArgsConstructor
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of = "id")
 public class User {
 
     @Id
@@ -36,5 +37,15 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    public User(UserDTO data) {
+        this.firstName = data.firstName();
+        this.lastName = data.lastName();
+        this.balance = data.balance();
+        this.userType = data.userType();
+        this.password = data.password();
+        this.document = data.document();
+        this.email = data.email();
+    }
 
 }
